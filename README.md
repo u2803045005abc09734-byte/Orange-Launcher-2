@@ -1,14 +1,19 @@
 # Orange Launcher 2
 
-## Windows build
+## Windows x64 build
 
-The Windows x64 build is configured in [orange-client-windows.yml](.github/workflows/orange-client-windows.yml).
+The GitHub Actions workflow is `.github/workflows/orange-client-windows.yml`.
 
-Upload the prepared source archive named `OrangeClient-source(2)-GitHub.zip` to the repository root. That push starts the build automatically. You can also start it manually from **Actions → Orange Client - Windows EXE → Run workflow** after the archive is present.
+It supports either:
+- the project directory `OrangeClient/` committed to the repository, or
+- `OrangeClient-source(2)-GitHub.zip` in the repository root.
 
-The workflow publishes these files as the `Orange-Client-Windows-x64` artifact:
+Adding either source layout to `main` starts the build automatically. A manual run is also available under **Actions → Orange Client - Windows EXE → Run workflow**.
+
+The `Orange-Client-Windows-x64` artifact contains:
 - `Orange-Client-Setup.exe` — Windows installer
 - `Orange-Client-Portable.exe` — portable executable
+- `Orange-Client-Portable-Files.zip` — portable executable plus the app-local Microsoft runtime DLLs, when staged
 - `SHA256SUMS.txt` — SHA-256 checksums
 
-Builds are unsigned unless a Windows code-signing certificate is configured. Windows SmartScreen may therefore show a warning.
+**Note:** GitHub Actions can only build files committed to this repository. A ZIP attached to a ChatGPT conversation is not automatically available to the GitHub runner. Builds are not Authenticode-signed unless a code-signing certificate is configured, so SmartScreen may show a warning.
